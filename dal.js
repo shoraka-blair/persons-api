@@ -16,6 +16,11 @@ function getPerson(id, cb) {
 
 }
 
+function addPerson(id, cb) {
+  db.put(id, function (err, doc)
+}
+
+
 // getPerson("person_garver_lois_garber@gmail.com", function (err, doc) {
 //   if (err) console.log ("error", err)
 //   console.log (doc)

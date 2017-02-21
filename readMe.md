@@ -14,9 +14,11 @@ npm start
 
 ## Endpoints
 
-### 'GET /persons/:id'
-provide a description
-list of route parameters and definition of ear param (:id)
+### GET /persons/:id
+returns a JSON object representin a person for a given person id
+#### Parameters
 
-example call:
-example response:
+id - The primary key of the person to retrieve
+#### Example call:
+GET /persons/person_garver_lois_garber@gmail.com
+#### Example response:
