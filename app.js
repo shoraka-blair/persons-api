@@ -29,6 +29,12 @@ app.delete ('/persons/:id', function (req, res, next) {
   })
 })
 
+app.put ('/persons/:id', function (req, res, next) {
+  dal.updatePerson(req.body, function (err, docs) {
+    if (err) return next(new HTTPError(err.status, err.message, err))
+    res.status(200).send(docs)
+  })
+})
 
 
 
