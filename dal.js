@@ -11,9 +11,6 @@ function getPerson(id, cb) {
     if (err) return cb(err)
     cb(null, doc)
   })
-
-
-
 }
 
 function addPerson(doc, cb) {
@@ -23,6 +20,20 @@ function addPerson(doc, cb) {
 
   })
 }
+
+function deletePerson(id, cb) {
+  db.get (id, function (err, doc) {
+    if (err) return cb(err)
+
+    db.remove(doc, function (err, deletedPerson) {
+      if (err) return cb(err)
+      cb(null, deletedPerson)
+    })
+  })
+  }
+
+
+
 
 // addPerson({"_id": "person_james_amy_james@gmail.com",
 //   "_rev": "2-767f0cc459a72750f15cf9101cb2024d",
@@ -41,9 +52,15 @@ function addPerson(doc, cb) {
 //   console.log (doc)
 // })
 
+// deletePerson("person_germain_mark_germain@gmail.com", function (err, doc) {
+//   if (err) console.log ("error", err)
+//   console.log (doc)
+// })
+
 
 
 const dal = {
+  deletePerson: deletePerson,
   addPerson: addPerson,
   getPerson: getPerson
 }

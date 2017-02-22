@@ -66,3 +66,19 @@ include all parameters for the document to be added into the body section of the
   "email": "james@gmail.com",
   "type": "person"
 }
+
+
+### DELETE /persons/:id
+deletes a JSON object representing a person for a given person id
+#### Parameters
+
+id - The primary key of the person to retrieve
+#### Example call:
+DELETE /persons/person_clark_gary_gclark@gmail.com
+#### Example response:
+
+{
+  "ok": true,
+  "id": "person_clark_gary_gclark@gmail.com",
+  "rev": "2-499217018393196a488179392cbf906f"
+}
