@@ -16,9 +16,24 @@ function getPerson(id, cb) {
 
 }
 
-function addPerson(id, cb) {
-  db.put(id, function (err, doc)
+function addPerson(doc, cb) {
+  db.put(doc, function (err, addedPerson) {
+    if (err) return cb(err)
+      cb (null, addedPerson)
+
+  })
 }
+
+// addPerson({"_id": "person_james_amy_james@gmail.com",
+//   "_rev": "2-767f0cc459a72750f15cf9101cb2024d",
+//   "firstName": "Lucy",
+//   "lastName": "James",
+//   "email": "james@gmail.com",
+//   "type": "person"}, function (err, doc) {
+//     if (err) return console.log (err)
+//     return console.log(doc)
+//   })
+
 
 
 // getPerson("person_garver_lois_garber@gmail.com", function (err, doc) {
@@ -29,6 +44,7 @@ function addPerson(id, cb) {
 
 
 const dal = {
+  addPerson: addPerson,
   getPerson: getPerson
 }
 

@@ -1,15 +1,36 @@
 const express = require('express')
 const dal = require('./dal.js')
 const app = express ()
+const port = process.env.PORT || 8080
+const bodyParser = require('body-parser')
+const HTTPError = require('node-http-error')
 
+app.use(bodyParser.json())
 
-app.get ('/persons/:id', function (req, res) {
+app.post('/persons', function (req, res, next) {
+  dal.addPerson(req.body, function (err, docs) {
+    if (err) return next(new HTTPError(err.status, err.message, err))
+    res.send(docs)
+  })
+})
+//next lets you pass execution down to the next middleware handler... if err, goes to error handler that always goes at the end...after all routes (other app.use)
+
+app.get ('/persons/:id', function (req, res, next) {
   dal.getPerson(req.params.id, function (err, docs) {
-    if (err) return res.send(err)
+    if (err) return next(new HTTPError(err.status, err.message, err))
     res.send(docs)
   })
 })
 
-app.listen(8080, function() {
-  console.log('Example app listening on port 8080')
+app.use(function (err, req, res, next) {
+  console.log (req.method, "", req.path, "err:", err)
+  res.status(err.status || 500)
+  res.send(err)
+})
+
+
+
+
+app.listen(port, function() {
+  console.log('Example app listening:', port)
 })

@@ -5,14 +5,16 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node app.js"
+    "start": "PORT=4000 node app.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "body-parser": "^1.16.1",
     "express": "^4.14.1",
     "install": "^0.8.7",
+    "node-http-error": "^1.0.0",
     "npm": "^4.2.0",
     "pouchdb-http": "^6.0.2",
     "ramda": "^0.23.0"
