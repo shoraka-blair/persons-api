@@ -8,12 +8,20 @@ const HTTPError = require('node-http-error')
 app.use(bodyParser.json())
 
 app.post('/persons', function (req, res, next) {
-  dal.addPerson(req.body, function (err, docs) {
+  dal.addPersonNoId(req.body, function (err, docs) {
     if (err) return next(new HTTPError(err.status, err.message, err))
     res.status(201).send(docs)
   })
 })
 //next lets you pass execution down to the next middleware handler... if err, goes to error handler that always goes at the end...after all routes (other app.use)
+
+app.get ('/persons', function (req, res, next) {
+  dal.getAllPersons(function (err, docs) {
+    if (err) return next(new HTTPError(err.status, err.message, err))
+    res.status(201).send(docs)
+  })
+})
+
 
 app.get ('/persons/:id', function (req, res, next) {
   dal.getPerson(req.params.id, function (err, docs) {
