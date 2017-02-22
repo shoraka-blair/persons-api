@@ -22,7 +22,7 @@ id - The primary key of the person to retrieve
 #### Example call:
 GET /persons/person_james_lois_james@gmail.com
 #### Example response:
-
+```
 {
   "_id": "person_james_lois_james@gmail.com",
   "_rev": "2-25f5081732863b5ccbcadef347c58c3f",
@@ -31,7 +31,7 @@ GET /persons/person_james_lois_james@gmail.com
   "email": "james@gmail.com",
   "type": "person"
 }
-
+```
 
 ### POST /persons/
 adds a new  JSON object as a document to a database representing a person for a given person id
@@ -40,6 +40,7 @@ adds a new  JSON object as a document to a database representing a person for a 
 #### Example call:
 POST /persons/
 include all parameters for the document to be added into the body section of the post
+```
 {
   "_id": "person_james_lois_james@gmail.com",
   "_rev": "2-25f5081732863b5ccbcadef347c58c3f",
@@ -48,10 +49,10 @@ include all parameters for the document to be added into the body section of the
   "email": "james@gmail.com",
   "type": "person"
 }
-
+```
 #### Example response:
 
-
+```
 {
   "ok": true,
   "id": "person_clark_gary_gclark@gmail.com",
@@ -66,7 +67,7 @@ include all parameters for the document to be added into the body section of the
   "email": "james@gmail.com",
   "type": "person"
 }
-
+```
 
 ### DELETE /persons/:id
 deletes a JSON object representing a person for a given person id
@@ -76,9 +77,22 @@ id - The primary key of the person to retrieve
 #### Example call:
 DELETE /persons/person_clark_gary_gclark@gmail.com
 #### Example response:
-
+```
 {
   "ok": true,
   "id": "person_clark_gary_gclark@gmail.com",
   "rev": "2-499217018393196a488179392cbf906f"
 }
+```
+### GET /persons  gets limited number of persons in db
+returns a batch of JSON objects representing persons with a limited number of responses
+#### Parameters
+
+#### Example call:
+GET /persons?limit=10
+#### Example response:
+```
+10 documents from db
+
+
+```

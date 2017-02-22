@@ -7,11 +7,12 @@ const db = new PouchDB('http://localhost:5984/test')
 //create and end export a function that retrieves a person form your couch Database
 
 
-function getAllPersons (cb) {
+function getAllPersons (limit, cb) {
   db.allDocs({
         include_docs: true,
         start_key: "person_",
-        end_key: "person_\uffff"
+        end_key: "person_\uffff",
+        limit: limit
     }, function (err, docs) {
       if (err) return cb(err)
       cb(null, map(x=> x.doc, docs.rows))
