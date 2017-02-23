@@ -84,15 +84,29 @@ DELETE /persons/person_clark_gary_gclark@gmail.com
   "rev": "2-499217018393196a488179392cbf906f"
 }
 ```
-### GET /persons  gets limited number of persons in db
+### GET /persons  gets all persons from database and can return a set amount of documents using 'limit'
 returns a batch of JSON objects representing persons with a limited number of responses
 #### Parameters
-
-#### Example call:
+can include a limit
+#### Example call(s):
+GET /persons
 GET /persons?limit=10
 #### Example response:
 ```
-10 documents from db
+10 person documents from db
+
+
+```
+### GET /addresses gets all addresses from database and can return a set amount of documents using 'limit'
+returns a batch of JSON objects representing addresses with a limited number of responses
+#### Parameters
+can include a limit
+#### Example call(s):
+GET /addresses
+GET /addresses?limit=10
+#### Example response:
+```
+10 address documents from db
 
 
 ```
