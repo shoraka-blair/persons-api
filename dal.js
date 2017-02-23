@@ -19,6 +19,18 @@ function getAllPersons (limit, cb) {
     })
 }
 
+function getAllAddresses (limit, cb) {
+  db.allDocs({
+    include_docs: true,
+    start_key: "address_",
+    end_key: "address_\uffff",
+    limit: limit
+  }, function (err, docs) {
+    if (err) return cb(err)
+    cb(null, map(x=> x.doc, docs.rows))
+  })
+}
+
 
 
 
@@ -130,6 +142,7 @@ function deletePerson(id, cb) {
 
 
 const dal = {
+  getAllAddresses: getAllAddresses,
   getAllPersons: getAllPersons,
   addPersonNoId: addPersonNoId,
   updatePerson: updatePerson,

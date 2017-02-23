@@ -22,6 +22,13 @@ app.get ('/persons', function (req, res, next) {
   })
 })
 
+app.get ('/addresses', function (req, res, next) {
+  dal.getAllAddresses(req.query.limit, function (err, docs) {
+    if (err) return next (new HTTPError(err.status, err.message, err))
+    res.status(200).send(docs)
+  })
+})
+
 
 app.get ('/persons/:id', function (req, res, next) {
   dal.getPerson(req.params.id, function (err, docs) {
