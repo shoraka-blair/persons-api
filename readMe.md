@@ -36,18 +36,19 @@ GET /persons/person_james_lois_james@gmail.com
 ### POST /persons/
 adds a new  JSON object as a document to a database representing a person for a given person id
 #### Parameters
+must include:
+firstName
+lastName
+email
 
 #### Example call:
 POST /persons/
 include all parameters for the document to be added into the body section of the post
 ```
 {
-  "_id": "person_james_lois_james@gmail.com",
-  "_rev": "2-25f5081732863b5ccbcadef347c58c3f",
   "firstName": "lois",
   "lastName": "james",
-  "email": "james@gmail.com",
-  "type": "person"
+  "email": "james@gmail.com"
 }
 ```
 #### Example response:
@@ -57,15 +58,6 @@ include all parameters for the document to be added into the body section of the
   "ok": true,
   "id": "person_clark_gary_gclark@gmail.com",
   "rev": "1-ebaf74effbd93c8c2f0f8a33f2df6f3e"
-}
-
-{
-  "_id": "person_james_lois_james@gmail.com",
-  "_rev": "2-25f5081732863b5ccbcadef347c58c3f",
-  "firstName": "lois",
-  "lastName": "james",
-  "email": "james@gmail.com",
-  "type": "person"
 }
 ```
 
@@ -130,5 +122,39 @@ GET /addresses/address_jones_amy_jones@gmail.com_1824_canyon oaks
 "city": "Mount Pleasant",
 "state": "South Carolina",
 "zip": 29464
+}
+```
+### POST /addresses/
+adds a new  JSON object as a document to a database representing an address for a given person id
+#### Parameters
+the request body must contain:
+person_id
+address type
+street
+city
+state
+zip
+
+#### Example call:
+POST /addresses/
+include all parameters for the document to be added into the body section of the post
+```
+{
+  "person_id": "person_jones_amy_jones@gmail.com",
+  "address_type": "vacation",
+  "street": "1824 canyon oaks",
+  "city": "Mount Pleasant",
+  "state": "South Carolina",
+  "zip": 29464
+  }
+
+```
+#### Example response:
+
+```
+{
+  "ok": true,
+  "id": "address_person_Markson_joe_jhillandale@gmail.com_1875 canyon oaks",
+  "rev": "1-4a8e52345132ecdf073a7cf6f203fe84"
 }
 ```

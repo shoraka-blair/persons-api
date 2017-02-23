@@ -70,12 +70,10 @@ function addPersonNoId (doc, cb) {
       })
     }
 
-
 function preppedNewPerson(doc) {
-  doc._id = "person_" + doc.firstName.toLowerCase()+"_" + doc.lastName.toLowerCase()+"_"+ doc.email.toLowerCase()
+  doc._id = "person_" + doc.firstName.toLowerCase()+"_" + doc.lastName.toLowerCase()+"_"+ doc.email.toLowerCase(),
   doc.type = "person"
   return doc
-
 }
 
 function checkRequiredInputs (doc) {
@@ -83,6 +81,29 @@ function checkRequiredInputs (doc) {
 
 }
 
+function addAddress (doc, cb) {
+  checkRequiredAddressInputs(doc)?
+  db.put(preppedNewAddress(doc), function (err, doc) {
+    if (err) return cb(err)
+    cb (null, doc)
+  }): cb({
+      error: "bad_request",
+      reason: "bad_request",
+      name: "bad_request",
+      status: "400",
+      message: "need to provide person_id, address_type, street, city, state, and zip"
+    })
+
+}
+
+function preppedNewAddress (doc) {
+  doc._id="address_"+doc.person_id+"_"+doc.street,
+  doc.type="address"
+return doc}
+
+function checkRequiredAddressInputs (doc) {
+  return prop('person_id', doc) && prop('address_type', doc) && prop('street', doc) && prop('city', doc) && prop('state', doc) && prop('zip', doc)
+}
 
 
 
@@ -149,6 +170,7 @@ function deletePerson(id, cb) {
 
 
 const dal = {
+  addAddress: addAddress,
   getAddress: getAddress,
   getAllAddresses: getAllAddresses,
   getAllPersons: getAllPersons,
