@@ -110,3 +110,25 @@ GET /addresses?limit=10
 
 
 ```
+
+### GET /addresses/:id
+returns a JSON object representing an address for a given address id
+#### Parameters
+
+id - The primary key of the address to retrieve
+#### Example call:
+GET /addresses/address_jones_amy_jones@gmail.com_1824_canyon oaks
+#### Example response:
+```
+{
+  "_id": "address_jones_amy_jones@gmail.com_1824_canyon oaks",
+"_rev": "3-12bb932e6911c3723fd548496906cf9c",
+"person_id": "person_jones_amy_jones@gmail.com",
+"type": "address",
+"address_type": "vacation",
+"street": "1824 canyon oaks",
+"city": "Mount Pleasant",
+"state": "South Carolina",
+"zip": 29464
+}
+```

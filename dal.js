@@ -41,6 +41,13 @@ function getPerson(id, cb) {
   })
 }
 
+function getAddress (id, cb) {
+  db.get(id, function (err, doc) {
+    if (err) return cb(err)
+    cb(null, doc)
+  })
+}
+
 function addPerson(doc, cb) {
   db.put(doc, function (err, addedPerson) {
     if (err) return cb(err)
@@ -142,6 +149,7 @@ function deletePerson(id, cb) {
 
 
 const dal = {
+  getAddress: getAddress,
   getAllAddresses: getAllAddresses,
   getAllPersons: getAllPersons,
   addPersonNoId: addPersonNoId,

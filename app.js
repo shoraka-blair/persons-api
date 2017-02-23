@@ -37,6 +37,13 @@ app.get ('/persons/:id', function (req, res, next) {
   })
 })
 
+app.get('/addresses/:id', function (req, res, next) {
+  dal.getAddress(req.params.id, function (err, doc) {
+    if (err) return next (new HTTPError(err.status, err.message, err))
+    res.status(200).send(doc)
+  })
+})
+
 app.delete ('/persons/:id', function (req, res, next) {
   dal.deletePerson(req.params.id, function (err, docs) {
     if(err) return next(new HTTPError(err.status, err.message, err))
